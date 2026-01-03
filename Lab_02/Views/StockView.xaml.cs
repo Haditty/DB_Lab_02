@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Lab_02.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,11 @@ namespace Lab_02.Views
         public StockView()
         {
             InitializeComponent();
+        }
+
+        private void StoresCB_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            //just an idea: when this is called, invoke another event to notify StockViewModel that the selection is changed
         }
     }
 }
