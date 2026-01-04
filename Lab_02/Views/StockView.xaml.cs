@@ -39,5 +39,10 @@ namespace Lab_02.Views
                 StockViewModel.LoadStoreStock(SelectedStore);
             }
         }
+
+        private void AddBookBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

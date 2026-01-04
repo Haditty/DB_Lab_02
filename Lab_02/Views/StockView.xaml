@@ -17,9 +17,13 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Label Grid.Row="0" Content="Store" Margin="10 0 0 0"/>
-        <ComboBox Name="StoresCB" Grid.Row="1" Margin="10" DisplayMemberPath="Name" SelectedIndex="0"
-                  SelectionChanged="StoresCB_SelectionChanged"/>
-        <DataGrid Name="StockDG" Grid.Row="2" Grid.ColumnSpan="3" />
+        <StackPanel Grid.Row="1" Orientation="Horizontal">
+            <Label Content="Store" VerticalAlignment="Center"/>
+            <ComboBox Name="StoresCB" VerticalAlignment="Center" Width="150" DisplayMemberPath="Name" SelectedIndex="0"
+                      SelectionChanged="StoresCB_SelectionChanged"/>
+        </StackPanel>
+        <Button x:Name="AddBookBtn" Content="Add book" Grid.Row="1" Grid.Column="1" Margin="50 10 50 10" Width="150" Click="AddBookBtn_Click"/>
+        <Button x:Name="RemoveBookBtn" Content="Remove book" Grid.Row="1" Grid.Column="2" Margin="50 10 50 10" Width="150"/>
+        <DataGrid x:Name="StockDG" Grid.Row="2" Grid.ColumnSpan="3" />
     </Grid>
 </UserControl>
