@@ -23,7 +23,7 @@
                       SelectionChanged="StoresCB_SelectionChanged"/>
         </StackPanel>
         <Button x:Name="AddBookBtn" Content="Add book" Grid.Row="1" Grid.Column="1" Margin="50 10 50 10" Width="150" Click="AddBookBtn_Click"/>
-        <Button x:Name="RemoveBookBtn" Content="Remove book" Grid.Row="1" Grid.Column="2" Margin="50 10 50 10" Width="150"/>
+        <Button x:Name="RemoveBookBtn" Content="Remove book" Grid.Row="1" Grid.Column="2" Margin="50 10 50 10" Width="150" Click="RemoveBookBtn_Click"/>
         <DataGrid x:Name="StockDG" Grid.Row="2" Grid.ColumnSpan="3" />
     </Grid>
 </UserControl>

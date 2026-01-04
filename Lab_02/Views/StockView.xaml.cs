@@ -42,7 +42,14 @@ namespace Lab_02.Views
 
         private void AddBookBtn_Click(object sender, RoutedEventArgs e)
         {
+            var addBookDialog = new AddBookDialog();
+            addBookDialog.ShowDialog();
+        }
 
+        private void RemoveBookBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var removeBookDialog = new RemoveBookDialog();
+            removeBookDialog.ShowDialog();
         }
     }
 }
