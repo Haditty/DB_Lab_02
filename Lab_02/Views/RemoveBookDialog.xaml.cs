@@ -44,14 +44,14 @@ namespace Lab_02.Views
         {
             using (var db = new Lab01Context())
             {
-                //var bookToRemove = 
-
                 var bookToRemove = db.StockStatuses.Find(SelectedStore.Id,SelectedBook.ISBN);
-                bookToRemove.InStock -= amount;
-                if (bookToRemove.InStock < 0)
-                    db.StockStatuses.Remove(bookToRemove);
+                if (bookToRemove != null)
+                {
+                    bookToRemove.InStock -= amount;
+                    if (bookToRemove.InStock < 0)
+                        db.StockStatuses.Remove(bookToRemove);
+                }
                 db.SaveChanges();
-                var bb = db.StockStatuses.ToList();
             }
         }
     }
