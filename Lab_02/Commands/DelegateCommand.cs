@@ -7,7 +7,7 @@ using System.Windows.Input;
 
 namespace Lab_02.Commands
 {
-    internal class DelegateCommand : ICommand
+    public class DelegateCommand : ICommand
     {
         public event EventHandler? CanExecuteChanged;
         private readonly Action<object> execute;

@@ -32,23 +32,23 @@ namespace Lab_02.Views
 
         private void StoresCB_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            //just an idea: when this is called, invoke another event to notify StockViewModel that the selection is changed
             if (e.AddedItems[0] is Store && e is not null)
             {
                 SelectedStore = (Store)e.AddedItems[0];
+                StockViewModel.SelectedStore = SelectedStore;
                 StockViewModel.LoadStoreStock(SelectedStore);
             }
         }
 
         private void AddBookBtn_Click(object sender, RoutedEventArgs e)
         {
-            var addBookDialog = new AddBookDialog();
+            var addBookDialog = new AddBookDialog(SelectedStore);
             addBookDialog.ShowDialog();
         }
 
         private void RemoveBookBtn_Click(object sender, RoutedEventArgs e)
         {
-            var removeBookDialog = new RemoveBookDialog();
+            var removeBookDialog = new RemoveBookDialog(SelectedStore);
             removeBookDialog.ShowDialog();
         }
     }

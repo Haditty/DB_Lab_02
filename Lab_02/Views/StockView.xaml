@@ -4,6 +4,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Lab_02.Views"
+             xmlns:UI="clr-namespace:Lab_02.ViewModels"
+             d:DataContext="{d:DesignInstance Type=UI:StockViewModel, IsDesignTimeCreatable=True}"
+             DataContext="{Binding StockViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
@@ -19,8 +22,10 @@
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="1" Orientation="Horizontal">
             <Label Content="Store" VerticalAlignment="Center"/>
-            <ComboBox Name="StoresCB" VerticalAlignment="Center" Width="150" DisplayMemberPath="Name" SelectedIndex="0"
-                      SelectionChanged="StoresCB_SelectionChanged"/>
+            <ComboBox Name="StoresCB" VerticalAlignment="Center" Width="150" 
+                      SelectedIndex="0"
+                      SelectionChanged="StoresCB_SelectionChanged"
+                      ItemsSource="{Binding Stores}" DisplayMemberPath="Name"/>
         </StackPanel>
         <Button x:Name="AddBookBtn" Content="Add book" Grid.Row="1" Grid.Column="1" Margin="50 10 50 10" Width="150" Click="AddBookBtn_Click"/>
         <Button x:Name="RemoveBookBtn" Content="Remove book" Grid.Row="1" Grid.Column="2" Margin="50 10 50 10" Width="150" Click="RemoveBookBtn_Click"/>

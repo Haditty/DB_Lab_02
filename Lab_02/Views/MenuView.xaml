@@ -2,18 +2,29 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:UI="clr-namespace:Lab_02.ViewModels"
+             d:DataContext="{d:DesignInstance Type=UI:StockViewModel, IsDesignTimeCreatable=True}"
+             DataContext="{Binding StockViewModel}"
              xmlns:local="clr-namespace:Lab_02.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Menu>
         <MenuItem Header="File">
-            <MenuItem Header="Select Store" />
+            <MenuItem Header="Select Store" ItemsSource = "{Binding Stores}">
+                <MenuItem.ItemContainerStyle>
+                    <Style TargetType="MenuItem">
+                        <Setter Property="Header" Value="{Binding Name}" />
+                        <Setter Property="Command" Value="{Binding DataContext.SetSelectedStoreCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" />
+                        <Setter Property="CommandParameter" Value="{Binding}" />
+                    </Style>
+                </MenuItem.ItemContainerStyle>
+            </MenuItem>
             <MenuItem Header="Exit" />
         </MenuItem>
         <MenuItem Header="Edit">
             <MenuItem Header="Add book to the store" />
-            <MenuItem Header="Remove book from the store" />
+            <MenuItem Header="Remove selected book from the store" />
         </MenuItem>
     </Menu>
 </UserControl>

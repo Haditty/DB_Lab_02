@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Lab_02.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,19 @@ namespace Lab_02.Views
     /// </summary>
     public partial class RemoveBookDialog : Window
     {
-        public RemoveBookDialog()
+        public RemoveBookDialog(Store? selectedStore)
         {
             InitializeComponent();
+        }
+
+        private void Remove_Button_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
+        private void Cancel_Button_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }

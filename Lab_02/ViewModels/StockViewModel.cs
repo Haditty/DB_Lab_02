@@ -1,4 +1,5 @@
-﻿using Lab_02.Models;
+﻿using Lab_02.Commands;
+using Lab_02.Models;
 using Lab_02.Views;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -10,16 +11,52 @@ using System.Threading.Tasks;
 
 namespace Lab_02.ViewModels
 {
-    public class StockViewModel
+    public class StockViewModel : ViewModelBase
     {
+        public ObservableCollection<Store> Stores { get; set; }
+
         public StockView StockView { get; set; }
+        public DelegateCommand SetSelectedStoreCommand { get; set; }
+        private Store _selectedStore;
+        public Store SelectedStore
+        {
+            get => _selectedStore;
+            set
+            {
+                _selectedStore = value;
+                StockView.SelectedStore = value;
+                RaisePropertyChanged();
+            }
+        }
         public StockViewModel()
         {
             StockView = new StockView(this);
-            using (var db = new Lab01Context())
+            SetSelectedStoreCommand = new DelegateCommand(SetSelectedStore);
+            LoadStores();
+        }
+
+        private void SetSelectedStore(object? obj)
+        {
+            if (obj is Store)
+            {
+                SelectedStore = (Store)obj;
+                LoadStoreStock(SelectedStore);
+                StockView.StoresCB.SelectedItem = SelectedStore;
+            }
+        }
+
+        public void LoadStores ()
+        {
+            /*using (var db = new Lab01Context())
             {
                 var stores = db.Stores.ToList();
                 StockView.StoresCB.ItemsSource = new ObservableCollection<Store>(stores);
+            }*/
+            using (var db = new Lab01Context())
+            {
+                Stores = new ObservableCollection<Store>(
+                    db.Stores.ToList()
+                );
             }
         }
 
