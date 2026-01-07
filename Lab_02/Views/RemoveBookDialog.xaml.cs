@@ -20,19 +20,39 @@ namespace Lab_02.Views
     /// </summary>
     public partial class RemoveBookDialog : Window
     {
-        public RemoveBookDialog(Store? selectedStore)
+        public Store SelectedStore { get; set; }
+        public StockSummary SelectedBook { get; set; }
+        public RemoveBookDialog(Store? selectedStore, StockSummary selectedBook)
         {
+            SelectedStore = selectedStore;
+            SelectedBook = selectedBook;
+            //this class should get the selected book from StockView when gets created
             InitializeComponent();
         }
 
         private void Remove_Button_Click(object sender, RoutedEventArgs e)
         {
+            RemoveBook(Int32.Parse(AmountTb.Text));
             Close();
         }
 
         private void Cancel_Button_Click(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+        private void RemoveBook (int amount)
+        {
+            using (var db = new Lab01Context())
+            {
+                //var bookToRemove = 
+
+                var bookToRemove = db.StockStatuses.Find(SelectedStore.Id,SelectedBook.ISBN);
+                bookToRemove.InStock -= amount;
+                if (bookToRemove.InStock < 0)
+                    db.StockStatuses.Remove(bookToRemove);
+                db.SaveChanges();
+                var bb = db.StockStatuses.ToList();
+            }
         }
     }
 }

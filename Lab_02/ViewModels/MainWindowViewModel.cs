@@ -19,11 +19,16 @@ namespace Lab_02.ViewModels
         public MainWindowViewModel(MainWindow mainWindow)
         {
             MainWindow = mainWindow;
-            StockViewModel = new StockViewModel();
+            StockViewModel = new StockViewModel(OpenRemoveBookWindow);
             ActiveView = StockViewModel.StockView;
             Grid.SetRow(ActiveView, 1);
             MainWindow.Grid.Children.Add(ActiveView);            
         }
 
+        private void OpenRemoveBookWindow(object obj)
+        {
+            var removeBookDialog = new RemoveBookDialog(StockViewModel.SelectedStore, StockViewModel.SelectedBook);
+            removeBookDialog.ShowDialog();
+        }
     }
 }

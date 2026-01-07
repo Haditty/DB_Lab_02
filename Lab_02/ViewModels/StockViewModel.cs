@@ -2,6 +2,8 @@
 using Lab_02.Models;
 using Lab_02.Views;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
+using Microsoft.Windows.Themes;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -14,9 +16,31 @@ namespace Lab_02.ViewModels
     public class StockViewModel : ViewModelBase
     {
         public ObservableCollection<Store> Stores { get; set; }
-
         public StockView StockView { get; set; }
         public DelegateCommand SetSelectedStoreCommand { get; set; }
+        public DelegateCommand ShowRemoveBookCommand { get; set; }
+        public Action<object> ShowRemoveBookWindow { get; set; }
+        private ObservableCollection<StockSummary> _stock;
+        public ObservableCollection<StockSummary> Stock
+        {
+            get => _stock;
+            set
+            {
+                _stock = value;
+                RaisePropertyChanged();
+            }
+        }
+        private StockSummary _selectedBook;
+        public StockSummary SelectedBook
+        {
+            get => _selectedBook;
+            set
+            {
+                _selectedBook = value;
+                RaisePropertyChanged();
+                ShowRemoveBookCommand.RaiseCanExecuteChanged();
+            }
+        }
         private Store _selectedStore;
         public Store SelectedStore
         {
@@ -28,12 +52,21 @@ namespace Lab_02.ViewModels
                 RaisePropertyChanged();
             }
         }
-        public StockViewModel()
+        public StockViewModel(Action<object> showRemoveBookWindow)
         {
             StockView = new StockView(this);
             SetSelectedStoreCommand = new DelegateCommand(SetSelectedStore);
+            ShowRemoveBookCommand = new DelegateCommand(showRemoveBookWindow, CanShowRemoveBookWindow);
             LoadStores();
         }
+
+        private bool CanShowRemoveBookWindow(object? arg) => SelectedBook != null;
+        // The implementation of this method should not be done in a ViewModel. It should be done in Code Behind.
+        // Because the ViewModel should not know anything about the functionality of the window.
+        /*private void ShowRemoveBookWindow(object obj)
+        {
+            throw new NotImplementedException();
+        }*/
 
         private void SetSelectedStore(object? obj)
         {
@@ -67,7 +100,7 @@ namespace Lab_02.ViewModels
                 var stock = db.StockStatuses
                     .Include(s => s.Store)
                     .Where(s => s.StoreId == selectedStore.Id)
-                    .Select(s => new
+                    .Select(s => new StockSummary
                     {
                         ISBN = s.Book.Isbn,
                         Title = s.Book.Title,
@@ -76,9 +109,7 @@ namespace Lab_02.ViewModels
                         Stock = s.InStock,
                     })
                     .ToList();
-
-                var collection = new ObservableCollection<object>(stock);
-                StockView.StockDG.ItemsSource = collection;
+                Stock = new ObservableCollection<StockSummary>(stock);
             }
         }
     }
