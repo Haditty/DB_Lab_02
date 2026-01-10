@@ -78,7 +78,6 @@ namespace Lab_02.ViewModels
         {
             throw new NotImplementedException();
         }*/
-
         private void SetSelectedStore(object? obj)
         {
             if (obj is Store)

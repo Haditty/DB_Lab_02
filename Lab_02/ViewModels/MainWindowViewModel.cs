@@ -16,12 +16,16 @@ namespace Lab_02.ViewModels
         public MainWindow MainWindow { get; set; }
         public UserControl ActiveView { get; set; }
         public StockViewModel StockViewModel { get; set; }
+        public MenuView MenuView { get; set; }
         public MainWindowViewModel(MainWindow mainWindow)
         {
             MainWindow = mainWindow;
             StockViewModel = new StockViewModel(OpenRemoveBookWindow);
+            MenuView = new MenuView(this);
             ActiveView = StockViewModel.StockView;
+            Grid.SetRow(MenuView, 0);
             Grid.SetRow(ActiveView, 1);
+            MainWindow.Grid.Children.Add(MenuView);
             MainWindow.Grid.Children.Add(ActiveView);
         }
         private void OpenRemoveBookWindow(object obj)

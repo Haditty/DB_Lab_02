@@ -55,7 +55,7 @@ namespace Lab_02.Views
                 if (bookToRemove != null)
                 {
                     bookToRemove.InStock -= amount;
-                    if (bookToRemove.InStock < 0)
+                    if (bookToRemove.InStock <= 0)
                         db.StockStatuses.Remove(bookToRemove);
                 }
                 db.SaveChanges();

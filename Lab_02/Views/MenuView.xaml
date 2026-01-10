@@ -23,8 +23,14 @@
             <MenuItem Header="Exit" />
         </MenuItem>
         <MenuItem Header="Edit">
-            <MenuItem Header="Add book to the store" />
-            <MenuItem Header="Remove selected book from the store" />
+            <MenuItem Header="Add book to the store" Click="OpenAddBookDialog_Click"/>
+            <MenuItem Header="Remove selected book from the store" Command="{Binding ShowRemoveBookCommand}"/>
         </MenuItem>
     </Menu>
 </UserControl>
+
+
+<!--
+    <Setter Property="Command" Value="{Binding DataContext.SetActivePackCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" />
+    <Setter Property="CommandParameter" Value="{Binding}" />
+-->

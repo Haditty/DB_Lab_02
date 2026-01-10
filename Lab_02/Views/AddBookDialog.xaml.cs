@@ -49,19 +49,13 @@ namespace Lab_02.Views
             catch { }
             Close();
         }
+
+        //Make a command from this
         private void AddBook (int amount)
         {
             SelectedStoreStock = StockViewModel.LoadStoreStock(SelectedStore);
             SelectedBook = (Book)BookCb.SelectedItem;
             var addedStock = new StockStatus() { BookId = SelectedBook.Isbn, StoreId = SelectedStore.Id, InStock = amount};
-            /*foreach (var item in SelectedStoreStock)
-            {
-                if (item.ISBN == addedStock.BookId)
-                    using (var db = new Lab01Context())
-                    {
-                        var stockToUpdate = db.StockStatuses.FirstOrDefault(s => s.BookId == addedStock.BookId);
-                    }
-            }*/
             using (var db = new Lab01Context())
             {
                 var bookToUpdate = db.StockStatuses.Find(SelectedStore.Id, SelectedBook.Isbn);
