@@ -36,12 +36,12 @@ namespace Lab_02.Views
             {
                 SelectedStore = (Store)e.AddedItems[0];
                 StockViewModel.SelectedStore = SelectedStore;
-                StockViewModel.LoadStoreStock(SelectedStore);
+                StockViewModel.Stock = StockViewModel.LoadStoreStock(SelectedStore);
             }
         }
         private void AddBookBtn_Click(object sender, RoutedEventArgs e)
         {
-            var addBookDialog = new AddBookDialog(SelectedStore);
+            var addBookDialog = new AddBookDialog(SelectedStore,StockViewModel);
             addBookDialog.ShowDialog();
         }
     }

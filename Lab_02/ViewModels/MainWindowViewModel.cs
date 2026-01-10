@@ -11,7 +11,7 @@ using System.Windows.Controls;
 
 namespace Lab_02.ViewModels
 {
-    internal class MainWindowViewModel : ViewModelBase
+    public class MainWindowViewModel : ViewModelBase
     {
         public MainWindow MainWindow { get; set; }
         public UserControl ActiveView { get; set; }
@@ -22,9 +22,8 @@ namespace Lab_02.ViewModels
             StockViewModel = new StockViewModel(OpenRemoveBookWindow);
             ActiveView = StockViewModel.StockView;
             Grid.SetRow(ActiveView, 1);
-            MainWindow.Grid.Children.Add(ActiveView);            
+            MainWindow.Grid.Children.Add(ActiveView);
         }
-
         private void OpenRemoveBookWindow(object obj)
         {
             var removeBookDialog = new RemoveBookDialog(StockViewModel.SelectedStore, StockViewModel.SelectedBook);

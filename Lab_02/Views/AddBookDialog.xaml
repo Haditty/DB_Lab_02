@@ -10,7 +10,7 @@
     <Grid>
         <StackPanel Orientation="Vertical">
             <Label Content="Book:" />
-            <ComboBox x:Name="BookCb" Margin="5" SelectedIndex="0" DisplayMemberPath="Title"/>
+            <ComboBox x:Name="BookCb" Margin="5" SelectedIndex="0" ItemsSource="{Binding Books}" DisplayMemberPath="Title"/>
             <Label Margin="10" />
             <Label Content="Amount:" />
             <TextBox x:Name="AmountTb" Margin="5" TextAlignment="Center"/>

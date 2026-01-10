@@ -10,6 +10,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Lab_02.ViewModels
 {
@@ -17,6 +18,7 @@ namespace Lab_02.ViewModels
     {
         public ObservableCollection<Store> Stores { get; set; }
         public StockView StockView { get; set; }
+        public ObservableCollection<Book> Books { get; set; }
         public DelegateCommand SetSelectedStoreCommand { get; set; }
         public DelegateCommand ShowRemoveBookCommand { get; set; }
         public Action<object> ShowRemoveBookWindow { get; set; }
@@ -58,8 +60,17 @@ namespace Lab_02.ViewModels
             SetSelectedStoreCommand = new DelegateCommand(SetSelectedStore);
             ShowRemoveBookCommand = new DelegateCommand(showRemoveBookWindow, CanShowRemoveBookWindow);
             LoadStores();
+            LoadBooks();
         }
-
+        private void LoadBooks()
+        {
+            using (var db = new Lab01Context())
+            {
+                Books = new ObservableCollection<Book>(
+                    db.Books.ToList()
+                );
+            }
+        }
         private bool CanShowRemoveBookWindow(object? arg) => SelectedBook != null;
         // The implementation of this method should not be done in a ViewModel. It should be done in Code Behind.
         // Because the ViewModel should not know anything about the functionality of the window.
@@ -73,7 +84,7 @@ namespace Lab_02.ViewModels
             if (obj is Store)
             {
                 SelectedStore = (Store)obj;
-                LoadStoreStock(SelectedStore);
+                Stock = LoadStoreStock(SelectedStore);
                 StockView.StoresCB.SelectedItem = SelectedStore;
             }
         }
@@ -93,7 +104,7 @@ namespace Lab_02.ViewModels
             }
         }
 
-        public void LoadStoreStock (Store selectedStore)
+        public ObservableCollection<StockSummary> LoadStoreStock (Store selectedStore)
         {
             using (var db = new Lab01Context())
             {
@@ -109,7 +120,7 @@ namespace Lab_02.ViewModels
                         Stock = s.InStock,
                     })
                     .ToList();
-                Stock = new ObservableCollection<StockSummary>(stock);
+                return new ObservableCollection<StockSummary>(stock);
             }
         }
     }

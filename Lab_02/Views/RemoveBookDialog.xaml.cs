@@ -26,14 +26,21 @@ namespace Lab_02.Views
         {
             SelectedStore = selectedStore;
             SelectedBook = selectedBook;
-            //this class should get the selected book from StockView when gets created
             InitializeComponent();
         }
 
         private void Remove_Button_Click(object sender, RoutedEventArgs e)
         {
-            RemoveBook(Int32.Parse(AmountTb.Text));
-            Close();
+            //make sure the data grid in stock view is updated if user clicks on Remove btn
+            try
+            {
+                RemoveBook(Int32.Parse(AmountTb.Text));
+                Close();
+            }
+             catch
+            {
+
+            }
         }
 
         private void Cancel_Button_Click(object sender, RoutedEventArgs e)
