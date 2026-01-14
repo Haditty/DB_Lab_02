@@ -17,9 +17,6 @@ using System.Windows.Shapes;
 
 namespace Lab_02.Views
 {
-    /// <summary>
-    /// Interaction logic for StockView.xaml
-    /// </summary>
     public partial class StockView : UserControl
     {
         public StockViewModel StockViewModel { get; set; }
@@ -29,7 +26,6 @@ namespace Lab_02.Views
             InitializeComponent();
             StockViewModel = stockViewModel;
         }
-
         private void StoresCB_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (e.AddedItems[0] is Store && e is not null)

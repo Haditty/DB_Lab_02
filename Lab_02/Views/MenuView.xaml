@@ -20,7 +20,7 @@
                     </Style>
                 </MenuItem.ItemContainerStyle>
             </MenuItem>
-            <MenuItem Header="Exit" />
+            <MenuItem Header="Exit" Click="Exit_Click"/>
         </MenuItem>
         <MenuItem Header="Edit">
             <MenuItem Header="Add book to the store" Click="OpenAddBookDialog_Click"/>

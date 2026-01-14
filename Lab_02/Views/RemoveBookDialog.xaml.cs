@@ -34,7 +34,6 @@ namespace Lab_02.Views
 
         private void Remove_Button_Click(object sender, RoutedEventArgs e)
         {
-            //make sure the data grid in stock view is updated if user clicks on Remove btn
             try
             {
                 RemoveBook(Int32.Parse(AmountTb.Text));
@@ -45,7 +44,6 @@ namespace Lab_02.Views
 
             }
         }
-
         private void Cancel_Button_Click(object sender, RoutedEventArgs e)
         {
             Close();

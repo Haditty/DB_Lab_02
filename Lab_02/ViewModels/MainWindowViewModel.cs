@@ -35,8 +35,3 @@ namespace Lab_02.ViewModels
         }
     }
 }
-
-//TODO: Make sure data grid gets updated after adding or removing books
-//TODO: Remove comments in code
-//TODO: Add exit functionality in menu view
-

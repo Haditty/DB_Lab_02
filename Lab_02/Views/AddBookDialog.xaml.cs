@@ -17,9 +17,6 @@ using System.Windows.Shapes;
 
 namespace Lab_02.Views
 {
-    /// <summary>
-    /// Interaction logic for AddBookDialog.xaml
-    /// </summary>
     public partial class AddBookDialog : Window
     {
         public Store? SelectedStore { get; set; }
@@ -33,15 +30,12 @@ namespace Lab_02.Views
             SelectedStore = selectedStore;
             DataContext = StockViewModel;
         }
-
         private void Cancel_Button_Click(object sender, RoutedEventArgs e)
         {
             Close();
         }
-
         private void Add_Button_Click(object sender, RoutedEventArgs e)
         {
-            //make sure the data grid in stock view is updated if user clicks on Add btn
             try
             {
             AddBook(Int32.Parse(AmountTb.Text));
@@ -49,8 +43,6 @@ namespace Lab_02.Views
             catch { }
             Close();
         }
-
-        //Make a command from this
         private void AddBook (int amount)
         {
             SelectedStoreStock = StockViewModel.LoadStoreStock(SelectedStore);

@@ -35,5 +35,9 @@ namespace Lab_02.Views
             var addBookDialog = new AddBookDialog(StockViewModel.SelectedStore, StockViewModel);
             addBookDialog.ShowDialog();
         }
+        private void Exit_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindowViewModel.MainWindow.Close();
+        }
     }
 }

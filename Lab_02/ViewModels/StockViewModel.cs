@@ -72,12 +72,6 @@ namespace Lab_02.ViewModels
             }
         }
         private bool CanShowRemoveBookWindow(object? arg) => SelectedBook != null;
-        // The implementation of this method should not be done in a ViewModel. It should be done in Code Behind.
-        // Because the ViewModel should not know anything about the functionality of the window.
-        /*private void ShowRemoveBookWindow(object obj)
-        {
-            throw new NotImplementedException();
-        }*/
         private void SetSelectedStore(object? obj)
         {
             if (obj is Store)
@@ -87,14 +81,8 @@ namespace Lab_02.ViewModels
                 StockView.StoresCB.SelectedItem = SelectedStore;
             }
         }
-
         public void LoadStores ()
         {
-            /*using (var db = new Lab01Context())
-            {
-                var stores = db.Stores.ToList();
-                StockView.StoresCB.ItemsSource = new ObservableCollection<Store>(stores);
-            }*/
             using (var db = new Lab01Context())
             {
                 Stores = new ObservableCollection<Store>(
@@ -102,7 +90,6 @@ namespace Lab_02.ViewModels
                 );
             }
         }
-
         public ObservableCollection<StockSummary> LoadStoreStock (Store selectedStore)
         {
             using (var db = new Lab01Context())
