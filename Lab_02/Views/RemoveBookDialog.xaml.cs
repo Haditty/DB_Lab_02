@@ -48,8 +48,10 @@ namespace Lab_02.Views
         {
             Close();
         }
-        private void RemoveBook (int amount)
+        private void RemoveBook (int amount = 1)
         {
+            if (amount < 0)
+                return;
             using (var db = new Lab01Context())
             {
                 var bookToRemove = db.StockStatuses.Find(SelectedStore.Id,SelectedBook.ISBN);

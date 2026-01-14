@@ -38,13 +38,15 @@ namespace Lab_02.Views
         {
             try
             {
-            AddBook(Int32.Parse(AmountTb.Text));
+                AddBook(Int32.Parse(AmountTb.Text));
+                Close();
             }
             catch { }
-            Close();
         }
-        private void AddBook (int amount)
+        private void AddBook (int amount = 1)
         {
+            if (amount < 0)
+                return;
             SelectedStoreStock = StockViewModel.LoadStoreStock(SelectedStore);
             SelectedBook = (Book)BookCb.SelectedItem;
             var addedStock = new StockStatus() { BookId = SelectedBook.Isbn, StoreId = SelectedStore.Id, InStock = amount};
