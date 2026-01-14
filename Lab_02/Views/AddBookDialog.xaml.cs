@@ -63,11 +63,12 @@ namespace Lab_02.Views
                 {
                     bookToUpdate.InStock += amount;
                     db.SaveChanges();
+                    StockViewModel.Stock = StockViewModel.LoadStoreStock(SelectedStore);
                     return;
                 }
                 db.StockStatuses.Add(addedStock);
                 db.SaveChanges();
-                //var test = db.StockStatuses.ToList();
+                StockViewModel.Stock = StockViewModel.LoadStoreStock(SelectedStore);
             }
         }
     }

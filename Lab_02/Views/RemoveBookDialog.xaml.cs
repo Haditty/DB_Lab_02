@@ -1,4 +1,5 @@
 ﻿using Lab_02.Models;
+using Lab_02.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,12 +21,14 @@ namespace Lab_02.Views
     /// </summary>
     public partial class RemoveBookDialog : Window
     {
+        public StockViewModel StockViewModel { get; set; }
         public Store SelectedStore { get; set; }
         public StockSummary SelectedBook { get; set; }
-        public RemoveBookDialog(Store? selectedStore, StockSummary selectedBook)
+        public RemoveBookDialog(Store? selectedStore, StockSummary selectedBook, StockViewModel stockViewModel)
         {
             SelectedStore = selectedStore;
             SelectedBook = selectedBook;
+            StockViewModel = stockViewModel;
             InitializeComponent();
         }
 
@@ -59,6 +62,7 @@ namespace Lab_02.Views
                         db.StockStatuses.Remove(bookToRemove);
                 }
                 db.SaveChanges();
+                StockViewModel.Stock = StockViewModel.LoadStoreStock(SelectedStore);
             }
         }
     }

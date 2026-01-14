@@ -30,6 +30,11 @@
         </StackPanel>
         <Button x:Name="AddBookBtn" Content="Add book" Grid.Row="1" Grid.Column="1" Margin="50 10 50 10" Width="150" Click="AddBookBtn_Click"/>
         <Button x:Name="RemoveBookBtn" Content="Remove book" Grid.Row="1" Grid.Column="2" Margin="50 10 50 10" Width="150" Command="{Binding ShowRemoveBookCommand}"/>
-        <DataGrid x:Name="StockDG" Grid.Row="2" Grid.ColumnSpan="3" SelectedItem="{Binding SelectedBook}" ItemsSource="{Binding Stock}" />
+        <DataGrid x:Name="StockDG" Grid.Row="2" Grid.ColumnSpan="3" SelectedItem="{Binding SelectedBook}"
+                  ItemsSource="{Binding Stock}" 
+                  IsReadOnly="True" CanUserAddRows="False" SelectionMode="Single"
+                  HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible"
+                  AlternationCount="2" RowBackground="White" AlternatingRowBackground="WhiteSmoke"
+                  />
     </Grid>
 </UserControl>

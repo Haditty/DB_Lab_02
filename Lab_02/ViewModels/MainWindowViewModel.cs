@@ -30,8 +30,13 @@ namespace Lab_02.ViewModels
         }
         private void OpenRemoveBookWindow(object obj)
         {
-            var removeBookDialog = new RemoveBookDialog(StockViewModel.SelectedStore, StockViewModel.SelectedBook);
+            var removeBookDialog = new RemoveBookDialog(StockViewModel.SelectedStore, StockViewModel.SelectedBook, StockViewModel);
             removeBookDialog.ShowDialog();
         }
     }
 }
+
+//TODO: Make sure data grid gets updated after adding or removing books
+//TODO: Remove comments in code
+//TODO: Add exit functionality in menu view
+

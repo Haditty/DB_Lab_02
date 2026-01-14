@@ -12,6 +12,5 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <!--<views:MenuView Grid.Row="0" /> -->
     </Grid>
 </Window>
