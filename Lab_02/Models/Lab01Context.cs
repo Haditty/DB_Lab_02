@@ -81,6 +81,12 @@ public partial class Lab01Context : DbContext
                 .HasForeignKey(d => d.PublisherId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_PublisherID");
+            entity.HasData(
+                new Book { Isbn = 9780241714348, Title = "Alchemised", Language = "English", Price = 215, ReleaseDate = new DateOnly(2025,09,23), PublisherId = 6},
+                new Book { Isbn = 9780349437057, Title = "Iron Flame", Language = "English", Price = 142, ReleaseDate = new DateOnly(2024, 11, 19), PublisherId = 4 },
+                new Book { Isbn = 9780349437071, Title = "Onyx Storm", Language = "English", Price = 210, ReleaseDate = new DateOnly(2025, 01, 21), PublisherId = 4 },
+                new Book { Isbn = 9781035414505, Title = "The Book of Azrael", Language = "English", Price = 147, ReleaseDate = new DateOnly(2024, 01, 18), PublisherId = 5 }
+                );
         });
 
         modelBuilder.Entity<BookAuthor>(entity =>
@@ -199,6 +205,21 @@ public partial class Lab01Context : DbContext
                 .HasForeignKey(d => d.StoreId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_StoreID");
+            entity.HasData(
+                new StockStatus() { StoreId = 1, BookId = 9780241714348, InStock = 3 },
+                new StockStatus() { StoreId = 1, BookId = 9781035414505, InStock = 16 },
+                new StockStatus() { StoreId = 1, BookId = 9781035437030, InStock = 2 },
+                new StockStatus() { StoreId = 1, BookId = 9781408728512, InStock = 4 },
+                new StockStatus() { StoreId = 1, BookId = 9781471415227, InStock = 15 },
+                new StockStatus() { StoreId = 2, BookId = 9780349437071, InStock = 22 },
+                new StockStatus() { StoreId = 2, BookId = 9781471407598, InStock = 2 },
+                new StockStatus() { StoreId = 2, BookId = 9781471415227, InStock = 10 },
+                new StockStatus() { StoreId = 3, BookId = 9780241714348, InStock = 1 },
+                new StockStatus() { StoreId = 3, BookId = 9781035414505, InStock = 4 },
+                new StockStatus() { StoreId = 3, BookId = 9781035437030, InStock = 6 },
+                new StockStatus() { StoreId = 3, BookId = 9781471415227, InStock = 6 },
+                new StockStatus() { StoreId = 3, BookId = 9781760630737, InStock = 11 }
+                );
         });
 
         modelBuilder.Entity<Store>(entity =>
@@ -206,6 +227,12 @@ public partial class Lab01Context : DbContext
             entity.HasKey(e => e.Id).HasName("PK__Stores__3214EC270BBFD00D");
 
             entity.Property(e => e.Id).HasColumnName("ID");
+
+            entity.HasData(
+                new Store () { Id = 1, Name = "Göteborg Backaplan", Adress = "Krokegårdsgatan 5, Göteborg"},
+                new Store() { Id = 2, Name = "Halmstad Hallarna", Adress = "Prästvägen 1, Halmstad" },
+                new Store() { Id = 3, Name = "Karlskrona", Adress = "Hantverkaregatan 1, Karlskrona" }
+                );
         });
 
         OnModelCreatingPartial(modelBuilder);
