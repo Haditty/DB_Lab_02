@@ -184,6 +184,15 @@ public partial class Lab01Context : DbContext
             entity.HasKey(e => e.Id).HasName("PK__Publishe__3214EC27E8DB943B");
 
             entity.Property(e => e.Id).HasColumnName("ID");
+
+            entity.HasData(
+                new Publisher() {Id = 1, Name = "Allen Unwin"},
+                new Publisher() { Id = 2, Name = "Tiptree Book Service" },
+                new Publisher() { Id = 3, Name = "Grantham Book Service" },
+                new Publisher() { Id = 4, Name = "Little Brown Book Group" },
+                new Publisher() { Id = 5, Name = "Headline Publishing Group" },
+                new Publisher() { Id = 6, Name = "Penguin Books Ltd." }
+                );
         });
 
         modelBuilder.Entity<StockStatus>(entity =>
